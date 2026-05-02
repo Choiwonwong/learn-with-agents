@@ -78,6 +78,8 @@ Next: <one concrete modification>
 6. The agent reviews the result against the current rubric.
 7. The session ends with one concrete next modification.
 8. Meaningful sessions are summarized in `mento/session-log.md`.
+9. When preparation, direction changes, drift, completion, or publishing is involved, the agent runs the closeout workflow: summarize, redact, resolve drift, evaluate, verify, then commit/push only when appropriate.
+10. If the learner also maintains a private personal knowledge system, the fully completed and public-safe learning result can be recorded there after the repo closeout. That private system is not a requirement for this public repository.
 
 ## Learning start examples
 

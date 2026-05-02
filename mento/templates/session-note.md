@@ -27,3 +27,22 @@
 ## 검증
 
 -
+
+## Public safety / redaction
+
+-
+
+## Drift
+
+- 상태: none / accepted / corrected / deferred
+- 내용:
+
+## 평가
+
+- 상태: pass / partial / blocked
+- 근거:
+
+## Git / personal record
+
+- Git:
+- Personal record:

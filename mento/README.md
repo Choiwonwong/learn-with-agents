@@ -92,6 +92,22 @@ Meaningful sessions should add only the minimum useful record to `session-log.md
 - next modification
 - verification, when available
 
+## Closeout rule
+
+When a study guide is ready, the learning direction changes, drift is identified, or a learning session is complete, follow [workflows/session-closeout.md](workflows/session-closeout.md).
+
+Closeout must make these explicit:
+
+- what changed
+- what was redacted or kept public-safe
+- whether drift exists and how it was handled
+- how the work was evaluated
+- what verification was run
+- whether the work is ready for commit and push
+- whether a private personal knowledge-base record is needed after full learning completion
+
+Any private personal knowledge system is treated as the learner's private environment. It is not a dependency for public readers of this repository, and public repo records should remain useful without access to it.
+
 ## Learning start rule
 
 When the learner says things like "오늘 공부하자", "주제: ...", or "기존 내용 보고 추천해줘", follow [workflows/learning-start.md](workflows/learning-start.md).

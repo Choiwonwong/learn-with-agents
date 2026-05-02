@@ -36,6 +36,7 @@ For study tasks:
 7. Review code against the relevant rubric.
 8. End with a concrete next modification.
 9. Record the session in `mento/session-log.md` when the work materially advances learning.
+10. When a guide is ready, direction changes, drift is found, learning completes, or repo changes are ready to publish, follow `mento/workflows/session-closeout.md` before commit/push or any private personal knowledge-base recording.
 
 ## Learning Start Workflow
 

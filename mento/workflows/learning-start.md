@@ -63,3 +63,5 @@ Codex는 먼저 하나의 사고 질문을 던지고, 바로 이어서 필요한
 - 작성한 코드
 - 리뷰받은 코드
 - 다음 수정
+
+종료, 방향 수정, drift 식별, 커밋/푸시 준비가 필요하면 [Session Closeout](session-closeout.md)을 따른다.
