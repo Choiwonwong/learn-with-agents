@@ -1,0 +1,6 @@
+[project]
+name = "learn-with-agents"
+version = "0.1.0"
+description = "AI-guided software engineering study lab"
+requires-python = ">=3.11"
+dependencies = []

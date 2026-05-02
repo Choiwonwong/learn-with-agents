@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.ruff_cache/
+.pytest_cache/
+
+# Local IDE/tooling
+.idea/
+
+# Local AI/runtime state
+.omx/
+
+# Local dependency/cache folders
+.uv-cache/
+
+# Secrets/local environment
+.env
+.env.*
+!.env.example
+
+# Uncurated local legacy samples
+archive/pycharm-sample/
