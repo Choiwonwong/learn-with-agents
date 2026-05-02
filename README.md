@@ -52,7 +52,6 @@ Next: <one concrete modification>
 ├── learning/
 │   ├── python/
 │   │   └── oop/
-│   │       ├── 00-legacy-notes/
 │   │       └── 01-http-scraper/
 │   ├── java/
 │   ├── go/

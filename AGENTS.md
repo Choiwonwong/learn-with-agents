@@ -83,7 +83,7 @@ Every meaningful learning session should leave evidence of:
 - Put each module under `learning/<track>/<area>/<NN-name>/`.
 - Use `practice/` for the learner's direct implementation.
 - Use `reference/` for comparison code, not as the first answer.
-- Preserve old learning material under `00-legacy-notes/` or `archive/`.
+- Keep old learning material only when it supports the current path; otherwise remove it or archive it outside the active curriculum.
 - Keep `mento/` for mentoring operations, rubrics, logs, prompts, and growth tracking.
 
 ## Review Posture

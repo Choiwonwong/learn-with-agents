@@ -2,6 +2,25 @@
 
 의미 있는 학습 세션마다 최신 항목을 위에 추가합니다.
 
+## 2026-05-02 - Python OOP Curriculum Cleanup
+
+- 목표: 현재 OOP Python 학습 흐름에서 오래된 자료를 제거하고 active curriculum을 HTTP scraper 중심으로 재정리한다.
+- 작성한 코드/문서:
+  - `learning/python/oop/README.md`
+  - `mento/roadmap.md`
+  - `mento/backlog.md`
+  - `README.md`
+  - `AGENTS.md`
+- 리뷰받은 코드:
+  - `learning/python/oop/01-http-scraper/practice/oop_scraper.py`는 아직 scaffold 상태라 다음 세션에서 직접 구현이 필요하다.
+- 주요 피드백:
+  - 오래된 자료가 00번 모듈처럼 보이면 현재 학습 순서를 흐리므로 active curriculum에서 제거한다.
+  - 다음 학습은 `Quote` 값 객체부터 시작해 책임 분리, 테스트 가능한 경계, 실패 정책, 변화 압력 순서로 진행한다.
+- 다음 수정:
+  - `practice/oop_scraper.py`에 `Quote` 값 객체와 `short()` 메서드를 직접 구현한다.
+- 검증:
+  - 오래된 자료 참조 제거 여부와 Python 문법 검사를 수행한다.
+
 ## 2026-05-02 - Public Learning Lab Positioning
 
 - 목표: GitHub public 공개를 전제로 이 저장소를 AI-guided learning lab으로 명확히 포지셔닝한다.
