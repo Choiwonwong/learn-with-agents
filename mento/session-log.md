@@ -2,6 +2,34 @@
 
 의미 있는 학습 세션마다 최신 항목을 위에 추가합니다.
 
+## 2026-05-03 - Go First CLI Guide Ready
+
+- 목표: GoLand로 Go 기본 실행 흐름을 1시간 동안 맛볼 수 있는 첫 Go 모듈을 준비한다.
+- 작성한 코드/문서:
+  - `learning/go/README.md`
+  - `learning/go/basics/01-first-cli/README.md`
+  - `learning/go/basics/01-first-cli/guide.md`
+  - `learning/go/basics/01-first-cli/notes.md`
+  - `learning/go/basics/01-first-cli/practice/`
+  - `learning/go/basics/01-first-cli/reference/`
+- 리뷰받은 코드:
+  - 아직 없음. 다음 학습 세션에서 `practice/` 코드를 직접 실행하고 수정하며 리뷰한다.
+- 주요 피드백:
+  - 이번 목표는 실무 Go가 아니라 module, package, main, struct, method, test, debug 흐름을 관찰하는 것이다.
+  - GoLand는 학습 보조 도구로 사용하되 `go run .`과 `go test ./...` CLI 흐름도 같이 확인한다.
+- 공개 안전 / 검열:
+  - 새 자료는 공개 가능한 언어 학습 내용만 담고 있으며 개인, 회사, 계정, credential, private URL 맥락을 추가하지 않았다.
+- Drift:
+  - 상태: accept
+  - 내용: 현재 roadmap의 즉시 초점은 Python OOP지만, Go 맛보기 모듈 준비로 잠시 이동했다. Go는 트랙 후보에 이미 있으므로 첫 모듈 준비를 수용한다.
+- 평가:
+  - 상태: partial
+  - 근거: 학습 자료와 예제 코드는 준비되었지만, Go SDK가 shell에서 아직 확인되지 않아 실행 검증은 다음 세션으로 남았다.
+- 다음 수정:
+  - GoLand에서 `learning/go/basics/01-first-cli/practice`를 열고 `go run .`, `go test ./...`를 실행한 뒤 `notes.md`를 채운다.
+- 검증:
+  - 파일 구조와 경로를 확인한다.
+
 ## 2026-05-02 - Learning Closeout Workflow Review
 
 - 목표: 학습 준비 완료, 방향 수정, drift 식별, 학습 종료, 검열, 평가, commit/push, 개인 지식 저장소 기록으로 이어지는 종료 프로세스를 명확히 한다.
