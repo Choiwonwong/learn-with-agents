@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 import requests
-from bs4 import BeautifulSoup
+from parsel import Selector
 
 
 @dataclass(frozen=True, slots=True)
@@ -42,21 +42,20 @@ class RequestsFetcher:
 
 class QuotesParser:
     def parse(self, html: str) -> list[Quote]:
-        soup = BeautifulSoup(html, "html.parser")
+        selector = Selector(text=html)
         quotes: list[Quote] = []
 
-        for item in soup.select(".quote"):
-            text_node = item.select_one(".text")
-            author_node = item.select_one(".author")
-            tag_nodes = item.select(".tags .tag")
+        for item in selector.css(".quote"):
+            text = item.css(".text::text").get()
+            author = item.css(".author::text").get()
 
-            if text_node is None or author_node is None:
+            if text is None or author is None:
                 continue
 
             quote = Quote(
-                text=text_node.get_text(strip=True),
-                author=author_node.get_text(strip=True),
-                tags=tuple(tag.get_text(strip=True) for tag in tag_nodes),
+                text=text.strip(),
+                author=author.strip(),
+                tags=tuple(tag.strip() for tag in item.css(".tags .tag::text").getall()),
             )
             quotes.append(quote)
 

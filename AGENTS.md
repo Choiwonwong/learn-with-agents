@@ -36,7 +36,10 @@ For study tasks:
 7. Review code against the relevant rubric.
 8. End with a concrete next modification.
 9. Record the session in `mento/session-log.md` when the work materially advances learning.
-10. When a guide is ready, direction changes, drift is found, learning completes, or repo changes are ready to publish, follow `mento/workflows/session-closeout.md` before commit/push or any private personal knowledge-base recording.
+10. Before final review or closeout, re-read the current on-disk contents of every file used for the learning, review, or recording decision so drift is caught before reporting.
+11. When a guide is ready, direction changes, drift is found, learning completes, or repo changes are ready to publish, follow `mento/workflows/session-closeout.md`.
+12. When a learning session is closed out, commit and push the current study-lab work by default after verification and public-safety checks pass.
+13. When work is being closed out, explicitly use the `nexus-vault` skill and always add a lightweight NexusV1 Daily/Request log.
 
 ## Learning Start Workflow
 

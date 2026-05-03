@@ -96,6 +96,8 @@ Meaningful sessions should add only the minimum useful record to `session-log.md
 
 When a study guide is ready, the learning direction changes, drift is identified, or a learning session is complete, follow [workflows/session-closeout.md](workflows/session-closeout.md).
 
+Before closing a session, the mentor must re-read the current on-disk contents of every file that was used for learning, review, or recording in that session. This is a drift guard: final feedback must be based on the latest files, not on stale chat context or an earlier code snapshot.
+
 Closeout must make these explicit:
 
 - what changed
@@ -103,10 +105,14 @@ Closeout must make these explicit:
 - whether drift exists and how it was handled
 - how the work was evaluated
 - what verification was run
-- whether the work is ready for commit and push
-- whether a private personal knowledge-base record is needed after full learning completion
+- what was committed and pushed, or why commit/push was blocked
+- which NexusV1 Daily/Request record was created
 
-Any private personal knowledge system is treated as the learner's private environment. It is not a dependency for public readers of this repository, and public repo records should remain useful without access to it.
+When a learning session is closed out, commit and push the current study-lab work by default after verification and public-safety checks pass. If commit or push is blocked, record the blocker explicitly.
+
+At every closeout, explicitly use the `nexus-vault` skill and make a lightweight NexusV1 Daily/Request record. The purpose is logging that the study happened and what was learned, not duplicating the full repo-local session log.
+
+NexusV1 is treated as the learner's private environment. It is not a dependency for public readers of this repository, and public repo records should remain useful without access to it.
 
 ## Learning start rule
 

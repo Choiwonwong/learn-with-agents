@@ -2,6 +2,97 @@
 
 의미 있는 학습 세션마다 최신 항목을 위에 추가합니다.
 
+## 2026-05-04 - Mento Closeout Guardrails Updated
+
+- 목표: 학습 마무리 시 stale context로 인한 drift를 막고, NexusV1 로깅을 필수 closeout 절차로 명시한다.
+- 작성한 코드/문서:
+  - `AGENTS.md`
+  - `mento/README.md`
+  - `mento/workflows/session-closeout.md`
+  - `mento/workflows/study-session.md`
+  - `mento/workflows/README.md`
+  - `mento/rubrics/growth-checklist.md`
+- 리뷰받은 코드:
+  - 코드 변경은 없음. 멘토 운영 규칙과 closeout 절차를 리뷰했다.
+- 주요 피드백:
+  - closeout 전에는 이번 학습에서 사용한 파일을 최신 디스크 상태로 다시 읽어야 한다.
+  - 사용자가 이미 코드를 수정한 경우 이전 대화가 아니라 현재 파일을 기준으로 최종 피드백과 기록을 갱신한다.
+  - 작업 마무리 시에는 `nexus-vault` 스킬을 명시적으로 사용해 NexusV1 Daily/Request에 가벼운 학습 로그를 반드시 남긴다.
+- 공개 안전 / 검열:
+  - 변경 내용은 공개 가능한 멘토 운영 규칙만 포함한다. NexusV1은 사적 환경으로 취급하되 공개 repo의 필수 의존성처럼 설명하지 않는다.
+- Drift:
+  - 상태: correct
+  - 내용: 이전 closeout에서 최신 파일 재읽기와 NexusV1 필수 기록이 누락되었다. 운영 규칙에 두 절차를 명시해 재발을 줄인다.
+- 평가:
+  - 상태: pass
+  - 근거: 관련 mentor/workflow/checklist 문서에 같은 기준을 반영했다.
+- 다음 수정:
+  - 다음 학습 closeout에서 최신 파일 재읽기와 NexusV1 필수 기록이 실제로 수행되는지 확인한다.
+- 검증:
+  - 문서 참조 검색으로 closeout, NexusV1, 최신 파일 재읽기 규칙의 반영 위치를 확인한다.
+
+### 2026-05-04 Correction
+
+- 내용: 선택적으로 읽히던 NexusV1 문구를 `작업 마무리 시 NexusV1 기록을 반드시 남긴다`로 강화했다.
+- 내용: 학습 마무리의 기본 종료 조건을 `검증 + 공개 안전 검열 + commit + push + NexusV1 기록`으로 명시했다.
+- 근거: 사용자가 학습 마무리라고 말한 경우 repo-local 기록에서 멈추지 않고 현재 study-lab 변경을 commit/push까지 진행해야 한다.
+
+## 2026-05-04 - Python OOP Scraper V2 Responsibility Review
+
+- 목표: HTTP scraper V2에서 pagination, quote count, tag lookup을 추가하며 `QuoteScraper`와 결과 컬렉션의 책임 경계를 검토한다.
+- 작성한 코드/문서:
+  - `learning/python/oop/01-http-scraper/practice/oop_scraper_v2.py`
+  - `learning/python/oop/01-http-scraper/notes.md`
+  - `pyproject.toml`
+  - `uv.lock`
+- 리뷰받은 코드:
+  - `QuoteModel`, `Fetcher`/`Parser` ABC, `RequestsFetcher`, `QuotesParser`, `QuoteScraper`, `QuoteCollection`, `FakeFetcher`
+- 주요 피드백:
+  - `QuoteScraper`가 fetch와 parse 조립 및 간단한 pagination을 맡는 것은 V2 기준에서 허용 가능하다.
+  - quote 개수 집계와 tag lookup을 `QuoteCollection`으로 분리한 판단은 OOP 책임 분리 관점에서 적절하다.
+  - `tuple[QuoteModel, ...]`는 여러 quote를 담는 불변 컬렉션 타입으로 맞고, `tuple[QuoteModel]`은 quote 1개짜리 tuple 의미라 부적절하다.
+  - Python 3.14+로 프로젝트 버전 약속을 맞추면 `typing.override` 사용은 괜찮다.
+  - `get_counts()`를 `count()`, `get_quote_by_tag()`를 `find_by_tag()`로 정리해 컬렉션 API 이름이 더 Pythonic해졌다.
+- 공개 안전 / 검열:
+  - 기록은 공개 가능한 Python OOP 학습 내용, 코드 리뷰 포인트, 검증 결과만 포함한다.
+- Drift:
+  - 상태: accept
+  - 내용: 원래 V1 scraper 실습에서 V2 확장 과제로 이동했다. 현재 roadmap의 변화 압력 적용 단계와 맞으므로 수용한다.
+- 평가:
+  - 상태: pass
+  - 근거: V2 코드가 문법 검사를 통과했고, `FakeFetcher` 기반 검산으로 2페이지 수집, tuple 저장, count, tag lookup 동작을 확인했다.
+- 다음 수정:
+  - 다음 세션에서 `QuoteScraper` 안의 `url.format(page_idx=...)`를 그대로 둘지, URL 생성 책임을 작은 객체나 함수로 분리할지 판단한다.
+- 검증:
+  - `uv run python -m py_compile learning/python/oop/01-http-scraper/practice/oop_scraper_v2.py`
+  - `FakeFetcher + QuotesParser + QuoteScraper(page_count=2)`로 quote count `2`, `"oop"` tag lookup 성공, missing tag `None` 반환 확인
+
+## 2026-05-03 - Python OOP Parser Direction Updated
+
+- 목표: HTTP scraper 실습의 HTML parser 학습 방향을 Beautiful Soup 중심에서 `parsel` selector 중심으로 바꾼다.
+- 작성한 코드/문서:
+  - `learning/python/oop/01-http-scraper/guide.md`
+  - `learning/python/oop/01-http-scraper/reference/oop_scraper.py`
+  - `learning/python/oop/01-http-scraper/requirements.txt`
+  - `pyproject.toml`
+  - `uv.lock`
+- 리뷰받은 코드:
+  - `QuotesParser` reference 구현을 `parsel.Selector`, `.css()`, `.get()`, `.getall()` 흐름으로 검산했다.
+- 주요 피드백:
+  - 표준 `html.parser`는 콜백 기반이라 selector 중심 scraping 학습에는 덜 적합하다.
+  - `parsel`은 CSS selector와 XPath를 함께 다룰 수 있어 parser 역할 경계와 selector 사고를 배우기에 더 직접적이다.
+  - 실습 파일의 깨진 `from bs4` import는 `from parsel import Selector`로 맞췄지만, `QuotesParser` 구현은 학습자가 직접 채우는 상태로 남겼다.
+- 공개 안전 / 검열:
+  - 변경 내용은 공개 가능한 Python OOP/parser 학습 자료만 포함한다.
+- 평가:
+  - 상태: pass
+  - 근거: `uv lock`, Python 문법 검사, fixture HTML 기반 `QuotesParser` 검산을 통과했다.
+- 다음 수정:
+  - `practice/oop_scraper.py`에서 `QuotesParser.parse()`를 `parsel` selector로 직접 구현한다.
+- 검증:
+  - `uv run python -m py_compile learning/python/oop/01-http-scraper/practice/oop_scraper.py learning/python/oop/01-http-scraper/reference/oop_scraper.py learning/python/oop/01-http-scraper/practice/abc_protocol_demo.py`
+  - fixture HTML로 `QuotesParser().parse()` 결과가 quote 1개, author `Tester`, tags `("unit", "oop")`인지 확인
+
 ## 2026-05-03 - Go First CLI Guide Ready
 
 - 목표: GoLand로 Go 기본 실행 흐름을 1시간 동안 맛볼 수 있는 첫 Go 모듈을 준비한다.

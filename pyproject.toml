@@ -2,5 +2,9 @@
 name = "learn-with-agents"
 version = "0.1.0"
 description = "AI-guided software engineering study lab"
-requires-python = ">=3.11"
-dependencies = []
+requires-python = ">=3.14"
+dependencies = [
+    "parsel>=1.11.0",
+    "pydantic>=2.13.3",
+    "requests>=2.33.1",
+]
