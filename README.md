@@ -58,7 +58,9 @@ Next: <one concrete modification>
 │   ├── design-patterns/
 │   └── fundamentals/
 ├── mento/
+│   ├── mentor-routing.md
 │   ├── workflows/
+│   │   └── closeout/
 │   ├── prompts/
 │   ├── rubrics/
 │   ├── templates/
@@ -71,15 +73,15 @@ Next: <one concrete modification>
 ## How study sessions work
 
 1. Pick a topic or ask the agent mentor for the next recommended session.
-2. The agent checks `mento/` records and relevant `learning/` material.
+2. The agent starts from `mento/mentor-routing.md` to choose the right workflow and read targets.
 3. The session starts with a short prediction, design choice, or explanation prompt.
 4. Code is written in `practice/`.
 5. Reference code is used only for comparison, not as the first answer.
 6. The agent reviews the result against the current rubric.
 7. The session ends with one concrete next modification.
 8. Meaningful sessions are summarized in `mento/session-log.md`.
-9. When preparation, direction changes, drift, completion, or publishing is involved, the agent runs the closeout workflow: summarize, redact, resolve drift, evaluate, verify, then commit/push only when appropriate.
-10. If the learner also maintains a private personal knowledge system, the fully completed and public-safe learning result can be recorded there after the repo closeout. That private system is not a requirement for this public repository.
+9. When preparation, direction changes, drift, completion, or publishing is involved, the agent runs `mento/workflows/session-closeout.md`.
+10. Closeout details for public safety, verification, git publishing, and private personal logging live under `mento/workflows/closeout/`. Private personal systems are not requirements for public readers of this repository.
 
 ## Learning start examples
 
@@ -93,6 +95,16 @@ Java Stream 공부하고 싶어
 ```
 
 The agent does not blindly follow the requested topic. It first checks whether the topic is a good next step, too broad, missing prerequisites, or misaligned with the current path. If needed, it proposes a better alternative before moving into coding.
+
+## Mentor routing
+
+Agent execution rules are intentionally split by responsibility:
+
+- `AGENTS.md`: CLI-loaded bootstrap and high-level project contract
+- `mento/mentor-routing.md`: request type -> read targets -> workflow
+- `mento/workflows/*.md`: learning and review procedures
+- `mento/workflows/closeout/*.md`: high-risk closeout gates
+- `mento/rubrics/*.md`: evaluation criteria
 
 ## Current tracks
 

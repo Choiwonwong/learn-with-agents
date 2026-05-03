@@ -59,6 +59,7 @@ I failed at <private/interview/company-specific situation>.
 ```text
 mento/
 ├── README.md
+├── mentor-routing.md
 ├── backlog.md
 ├── roadmap.md
 ├── session-log.md
@@ -68,7 +69,13 @@ mento/
 │   ├── topic-intake.md
 │   ├── mentor-challenge.md
 │   ├── study-session.md
-│   └── code-review-session.md
+│   ├── code-review-session.md
+│   ├── session-closeout.md
+│   └── closeout/
+│       ├── public-safety.md
+│       ├── verification.md
+│       ├── git-publish.md
+│       └── nexus-record.md
 ├── prompts/
 │   └── default-mentor-prompt.md
 ├── rubrics/
@@ -92,6 +99,17 @@ Meaningful sessions should add only the minimum useful record to `session-log.md
 - next modification
 - verification, when available
 
+## Routing rule
+
+`mentor-routing.md` is the canonical routing surface for mentor requests. It maps request types to the files that must be read first and the workflow that should run next.
+
+Keep detailed workflow rules out of `AGENTS.md` and this README. Use:
+
+- `mentor-routing.md` for routing
+- `workflows/*.md` for procedures
+- `workflows/closeout/*.md` for high-risk closeout gates
+- `rubrics/*.md` for evaluation criteria
+
 ## Closeout rule
 
 When a study guide is ready, the learning direction changes, drift is identified, or a learning session is complete, follow [workflows/session-closeout.md](workflows/session-closeout.md).
@@ -108,11 +126,12 @@ Closeout must make these explicit:
 - what was committed and pushed, or why commit/push was blocked
 - which NexusV1 Daily/Request record was created
 
-When a learning session is closed out, commit and push the current study-lab work by default after verification and public-safety checks pass. If commit or push is blocked, record the blocker explicitly.
+Closeout details are split by risk gate:
 
-Commit splitting follows decision boundaries, not file types. Keep code, verification, docs, and session logs together when they prove the same learning step; split changes that should be reverted independently.
-
-At every closeout, explicitly use the `nexus-vault` skill and make a lightweight NexusV1 Daily/Request record. The purpose is logging that the study happened and what was learned, not duplicating the full repo-local session log.
+- [public-safety.md](workflows/closeout/public-safety.md)
+- [verification.md](workflows/closeout/verification.md)
+- [git-publish.md](workflows/closeout/git-publish.md)
+- [nexus-record.md](workflows/closeout/nexus-record.md)
 
 NexusV1 is treated as the learner's private environment. It is not a dependency for public readers of this repository, and public repo records should remain useful without access to it.
 
@@ -120,4 +139,4 @@ NexusV1 is treated as the learner's private environment. It is not a dependency 
 
 When the learner says things like "오늘 공부하자", "주제: ...", or "기존 내용 보고 추천해줘", follow [workflows/learning-start.md](workflows/learning-start.md).
 
-Before starting, check the roadmap, backlog, session log, and known growth areas. If the requested topic is too broad or poorly sequenced, challenge it once and propose a smaller executable alternative.
+Before starting, use [mentor-routing.md](mentor-routing.md) to identify the required read targets. If the requested topic is too broad or poorly sequenced, challenge it once and propose a smaller executable alternative.

@@ -2,6 +2,45 @@
 
 의미 있는 학습 세션마다 최신 항목을 위에 추가합니다.
 
+## 2026-05-04 - Mentor Routing SRP Refactor
+
+- 목표: Codex CLI가 안정적으로 읽는 `AGENTS.md`는 얇은 bootstrap으로 유지하고, 멘토 요청 라우팅과 closeout 위험 gate를 책임별 문서로 분리한다.
+- 작성한 코드/문서:
+  - `AGENTS.md`
+  - `README.md`
+  - `mento/README.md`
+  - `mento/mentor-routing.md`
+  - `mento/workflows/session-closeout.md`
+  - `mento/workflows/closeout/public-safety.md`
+  - `mento/workflows/closeout/verification.md`
+  - `mento/workflows/closeout/git-publish.md`
+  - `mento/workflows/closeout/nexus-record.md`
+  - `mento/workflows/README.md`
+  - `mento/workflows/study-session.md`
+  - `mento/prompts/default-mentor-prompt.md`
+  - `mento/rubrics/growth-checklist.md`
+- 리뷰받은 코드:
+  - 코드 변경은 없음. 멘토 운영 문서의 SRP와 라우팅 구조를 리뷰했다.
+- 주요 피드백:
+  - `AGENTS.md`는 Codex CLI bootstrap으로 두고 상세 절차를 반복하지 않는다.
+  - `mento/mentor-routing.md`가 요청 유형별 read target과 workflow를 고르는 canonical routing surface가 된다.
+  - `session-closeout.md`는 종료 순서와 필수 gate를 조율하고, public safety / verification / git publish / NexusV1 record 세부 규칙은 `mento/workflows/closeout/`가 담당한다.
+- 공개 안전 / 검열:
+  - 변경 내용은 공개 가능한 멘토 운영 구조와 학습 workflow 문서만 포함한다.
+  - NexusV1은 멘토 closeout gate로 유지하되, public repo 독자의 재현 요구사항처럼 설명하지 않는다.
+- Drift:
+  - 상태: accept
+  - 내용: Python OOP 구현 세션이 아니라 멘토 운영 구조 개선으로 진행했다. 사용자가 명시적으로 현재 mento workflow/context 구조 개선을 요청했으므로 수용한다.
+- 평가:
+  - 상태: pass
+  - 근거: 라우팅, workflow, closeout gate, checklist 문서의 canonical owner가 더 분명해졌다.
+- 다음 수정:
+  - 다음 실제 학습 세션에서 `mento/mentor-routing.md`를 시작점으로 사용하고 closeout gate가 누락 없이 실행되는지 확인한다.
+- 검증:
+  - `rg`로 routing/closeout/NexusV1/git/verification 참조 위치를 확인한다.
+  - `find mento/workflows/closeout -maxdepth 1 -type f`로 gate 문서 4개 생성을 확인한다.
+  - `git diff --stat`, `git diff`, `git status --short`로 변경 범위와 `.omx/` 제외 상태를 확인한다.
+
 ## 2026-05-04 - Mento Closeout Guardrails Updated
 
 - 목표: 학습 마무리 시 stale context로 인한 drift를 막고, NexusV1 로깅을 필수 closeout 절차로 명시한다.

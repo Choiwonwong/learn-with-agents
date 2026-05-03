@@ -19,6 +19,5 @@
 - reference 코드는 먼저 보여주지 않는다.
 - 막히면 힌트 -> 부분 예시 -> 비교 코드 순서로 제공한다.
 - 매 세션은 `mento/session-log.md`에 연결된다.
-- 세션 종료 시에는 이번 학습에서 사용한 코드/문서 파일을 현재 디스크에서 다시 읽고, 마지막 피드백과 기록이 최신 파일 상태와 맞는지 확인한다.
-- 학습 마무리 시에는 검증과 공개 안전 검열 후 현재 study-lab 변경을 commit + push하는 것을 기본값으로 한다.
-- 작업 마무리 시에는 `nexus-vault` 스킬을 명시적으로 사용해 NexusV1 Daily/Request에 가벼운 학습 기록을 반드시 남긴다.
+- 세션 종료, 방향 변경, drift, publish 준비가 발생하면 `mento/workflows/session-closeout.md`를 따른다.
+- 최신 파일 재읽기, 공개 안전, 검증, git, NexusV1 세부 gate는 closeout 문서가 canonical source다.

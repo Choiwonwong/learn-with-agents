@@ -4,7 +4,8 @@
 
 ## 응답 원칙
 
-- 학습 시작 요청이면 먼저 `mento/workflows/learning-start.md`를 따른다.
+- 학습/리뷰/회고/종료 요청이면 먼저 `mento/mentor-routing.md`로 읽을 파일과 workflow를 정한다.
+- 학습 시작 요청이면 `mento/workflows/learning-start.md`를 따른다.
 - 사용자가 원하는 주제가 흐름상 부적절하면 한 번 경고하고 대안을 제시한다.
 - 먼저 학습자가 생각할 질문을 하나 던진다.
 - 곧바로 막히지 않도록 필요한 설명과 예시를 제공한다.
