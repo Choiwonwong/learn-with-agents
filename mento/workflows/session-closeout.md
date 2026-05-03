@@ -161,9 +161,46 @@ Next: 다음 세션은 practice/oop_scraper.py 구현으로 되돌린다.
 - `git status --short`로 staged/untracked 상태 확인
 - `.omx/`, `.venv/`, `.idea/`, raw logs, secrets가 커밋 대상이 아닌지 확인
 - `git diff --stat`와 핵심 diff 확인
+- commit splitting rule에 따라 commit 단위가 의사결정 경계와 맞는지 확인
 - closeout 기록이 `mento/session-log.md` 또는 관련 문서에 남았는지 확인
 - 테스트/검증 결과가 기록되었는지 확인
 - commit/push를 보류한다면 blocker를 `mento/session-log.md`와 최종 응답에 남긴다.
+
+### Commit splitting rule
+
+커밋은 파일 종류가 아니라 의사결정 경계로 나눕니다.
+
+기본 질문:
+
+```text
+이 커밋을 나중에 되돌릴 때, 포함된 변경을 모두 함께 되돌려도 되는가?
+```
+
+대답이 "아니오"라면 커밋을 나눕니다.
+
+원칙:
+
+- `1 commit = 하나의 학습/운영 의사결정 단위`
+- 같은 학습 단계의 code, tests/checks, guide, notes, session-log는 함께 커밋할 수 있다.
+- 운영 규칙 변경은 practice code 변경과 분리한다. 단, 그 규칙 변경이 해당 세션 closeout 자체를 완성하기 위한 직접 변경이면 같은 closeout 묶음으로 허용한다.
+- parser 선택, Python version policy, dependency/lockfile 변경처럼 되돌림 영향이 큰 결정은 별도 커밋을 우선한다.
+- 서로 다른 learning track, unrelated cleanup, formatting-only churn은 별도 커밋으로 분리한다.
+- 실험 코드와 안정화/검증 코드는 되돌림 경계가 다르면 분리한다.
+
+예시:
+
+```text
+Adopt parsel for OOP scraper parsing practice
+- guide/reference/requirements/pyproject/uv.lock
+
+Add scraper V2 responsibility practice
+- oop_scraper_v2.py/notes/session-log
+
+Require durable closeout for mento sessions
+- AGENTS.md/mento workflow/checklist/session-log
+```
+
+작은 세션에서는 과도하게 쪼개지 않습니다. 기준은 "미래의 내가 커밋 하나만 읽고 의사결정과 검증을 이해할 수 있는가"입니다.
 
 커밋 메시지는 AGENTS.md의 Lore Commit Protocol을 따릅니다.
 

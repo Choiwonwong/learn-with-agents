@@ -9,6 +9,7 @@
 - [ ] 세션 마무리 전에 이번 학습에 사용한 파일을 최신 디스크 상태로 다시 읽었다.
 - [ ] 공개 저장소에 안전한 내용만 남겼다.
 - [ ] drift가 있으면 accept/correct/defer로 정리했다.
+- [ ] 커밋을 파일 종류가 아니라 의사결정/되돌림 경계 기준으로 나눴다.
 - [ ] 학습 마무리 시 현재 study-lab 변경을 commit + push했거나, blocker를 기록했다.
 - [ ] 작업 마무리 시 `nexus-vault` 스킬로 NexusV1 Daily/Request 기록을 반드시 남겼다.
 

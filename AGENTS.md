@@ -39,7 +39,8 @@ For study tasks:
 10. Before final review or closeout, re-read the current on-disk contents of every file used for the learning, review, or recording decision so drift is caught before reporting.
 11. When a guide is ready, direction changes, drift is found, learning completes, or repo changes are ready to publish, follow `mento/workflows/session-closeout.md`.
 12. When a learning session is closed out, commit and push the current study-lab work by default after verification and public-safety checks pass.
-13. When work is being closed out, explicitly use the `nexus-vault` skill and always add a lightweight NexusV1 Daily/Request log.
+13. Split commits by decision/revert boundary: keep code, tests, docs, and logs together only when they prove the same learning step.
+14. When work is being closed out, explicitly use the `nexus-vault` skill and always add a lightweight NexusV1 Daily/Request log.
 
 ## Learning Start Workflow
 

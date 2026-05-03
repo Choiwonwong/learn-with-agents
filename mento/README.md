@@ -110,6 +110,8 @@ Closeout must make these explicit:
 
 When a learning session is closed out, commit and push the current study-lab work by default after verification and public-safety checks pass. If commit or push is blocked, record the blocker explicitly.
 
+Commit splitting follows decision boundaries, not file types. Keep code, verification, docs, and session logs together when they prove the same learning step; split changes that should be reverted independently.
+
 At every closeout, explicitly use the `nexus-vault` skill and make a lightweight NexusV1 Daily/Request record. The purpose is logging that the study happened and what was learned, not duplicating the full repo-local session log.
 
 NexusV1 is treated as the learner's private environment. It is not a dependency for public readers of this repository, and public repo records should remain useful without access to it.

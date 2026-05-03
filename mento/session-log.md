@@ -37,6 +37,12 @@
 - 내용: 학습 마무리의 기본 종료 조건을 `검증 + 공개 안전 검열 + commit + push + NexusV1 기록`으로 명시했다.
 - 근거: 사용자가 학습 마무리라고 말한 경우 repo-local 기록에서 멈추지 않고 현재 study-lab 변경을 commit/push까지 진행해야 한다.
 
+### 2026-05-04 Commit Splitting Guidance
+
+- 내용: 커밋 단위는 파일 종류가 아니라 의사결정/되돌림 경계 기준으로 나누도록 명시했다.
+- 내용: 같은 학습 단계의 code, 검증, guide, notes, session-log는 함께 커밋할 수 있지만, 운영 규칙 변경, dependency/version policy, unrelated cleanup은 별도 커밋을 우선하도록 정리했다.
+- 근거: 학습 기록과 운영 규칙이 함께 커지면 미래 리뷰와 되돌림이 어려워지므로 commit history 자체도 학습 증거로 관리한다.
+
 ## 2026-05-04 - Python OOP Scraper V2 Responsibility Review
 
 - 목표: HTTP scraper V2에서 pagination, quote count, tag lookup을 추가하며 `QuoteScraper`와 결과 컬렉션의 책임 경계를 검토한다.
