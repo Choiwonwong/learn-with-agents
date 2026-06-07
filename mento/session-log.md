@@ -285,3 +285,25 @@
 - 주요 피드백:
 - 다음 수정:
 - 검증:
+
+## 2026-06-07 - Same-Origin Policy Topic Intake
+
+- 목표: Same-Origin Policy를 이론과 코드 관찰이 함께 있는 fundamentals networking 모듈로 학습할 수 있게 준비한다.
+- 작성한 코드/문서:
+  - `learning/fundamentals/networking/01-same-origin-policy/README.md`
+  - `learning/fundamentals/networking/01-same-origin-policy/guide.md`
+  - `learning/fundamentals/networking/01-same-origin-policy/practice/sop_lab.py`
+  - `learning/fundamentals/networking/01-same-origin-policy/notes.md`
+  - `learning/fundamentals/networking/01-same-origin-policy/reference/README.md`
+  - `learning/fundamentals/README.md`
+  - `mento/roadmap.md`
+  - `mento/backlog.md`
+- 리뷰받은 코드:
+  - 아직 없음. 다음 세션에서 `practice/sop_lab.py`를 실행하고 관찰 결과를 리뷰한다.
+- 주요 피드백:
+  - SOP는 브라우저 JavaScript의 cross-origin 응답 읽기 제한으로 학습해야 하며, 서버 간 통신 규칙이나 인증/인가 대체물로 설명하면 안 된다.
+  - CORS, CSRF, XSS, SameSite Cookie를 한꺼번에 섞지 말고 책임 경계를 분리한다.
+- 다음 수정:
+  - `practice/sop_lab.py`를 실행해 same-origin, cross-origin without CORS, cross-origin with CORS 결과를 `notes.md`에 기록한다.
+- 검증:
+  - `practice/sop_lab.py` 문법 검사를 통과했다.

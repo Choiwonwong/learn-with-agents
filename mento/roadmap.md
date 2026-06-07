@@ -45,6 +45,7 @@
 
 ## 다음 후보
 
+- Fundamentals networking: Same-Origin Policy 로컬 브라우저 실습 (`learning/fundamentals/networking/01-same-origin-policy/`)
 1. Python OOP scraper 1차 구현: `Quote`, `Fetcher`, `Parser`, `QuoteScraper`
 2. Python testing: fake fetcher와 fixture HTML로 네트워크 없는 검산
 3. Python error handling: 예외 설계와 retry 기준
