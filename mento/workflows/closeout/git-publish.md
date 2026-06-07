@@ -7,10 +7,20 @@
 - `git status --short`로 staged/untracked 상태를 확인한다.
 - `.omx/`, `.venv/`, `.idea/`, raw logs, secrets가 커밋 대상이 아닌지 확인한다.
 - `git diff --stat`와 핵심 diff를 확인한다.
+- 변경이 planning PR인지 learning PR인지 분류하고, planning-only 변경과 실제 학습 증거가 한 PR에 섞이지 않았는지 확인한다.
 - commit splitting rule에 따라 commit 단위가 의사결정 경계와 맞는지 확인한다.
 - closeout 기록이 `mento/session-log.md` 또는 관련 문서에 남았는지 확인한다.
 - 테스트/검증 결과가 기록되었는지 확인한다.
 - commit/push를 보류한다면 blocker를 `mento/session-log.md`와 최종 응답에 남긴다.
+
+## Study PR Boundary Rule
+
+학습 플래닝과 실제 학습은 PR을 분리합니다.
+
+- Planning PR: 학습 계획, 커리큘럼, workflow, module scaffold, `learning-plan.md`, roadmap/backlog/session-log의 planning 기록.
+- Learning PR: 실제 학습 중 채운 `notes.md`, practice code, 실행/관찰 결과, 리뷰 피드백, 다음 수정.
+- 실제 학습 중 학습 문서 수정은 허용합니다. 단, 세션 증거, 현재 이해 정정, 다음 수정 기록이어야 하며 planning-only 변경과 섞지 않습니다.
+- 사용자가 명시적으로 하나의 PR을 요구하지 않는 한 planning-only 변경과 learning evidence를 같은 PR에 담지 않습니다.
 
 ## Commit Splitting Rule
 

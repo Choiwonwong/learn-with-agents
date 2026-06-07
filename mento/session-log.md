@@ -325,3 +325,21 @@
   - 실제 학습 세션에서 `notes.md`의 위협 모델, CORS 관찰 결과, renderer process / Site Isolation 설명을 채운다.
 - 검증:
   - `practice/sop_lab.py` 문법 검사와 `git diff --check`를 통과했다.
+
+## 2026-06-07 - Study Planning and Learning PR Boundary Rule
+
+- 목표: 학습 플래닝 PR과 실제 학습 PR을 분리하는 hard rule을 학습 레포 운영 절차에 반영한다.
+- 작성한 코드/문서:
+  - `AGENTS.md`
+  - `mento/workflows/session-closeout.md`
+  - `mento/workflows/closeout/git-publish.md`
+- 리뷰받은 코드:
+  - 코드 변경은 없음. 운영 규칙 변경만 수행했다.
+- 주요 피드백:
+  - 학습 계획, 커리큘럼, workflow, module scaffold, `learning-plan.md`는 planning PR에 담는다.
+  - 실제 학습 중 채운 notes, practice code, 관찰 결과, 리뷰 피드백, 다음 수정은 별도 learning PR에 담는다.
+  - 실제 학습 과정에서 학습 문서를 수정하는 것은 허용하되, 세션 증거와 다음 수정 기록 목적이어야 한다.
+- 다음 수정:
+  - Same-Origin Policy 실제 학습은 planning PR과 분리된 새 learning PR에서 `notes.md`를 채우며 진행한다.
+- 검증:
+  - 운영 규칙 문서 diff와 PR boundary 문구 검색을 확인한다.
