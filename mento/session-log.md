@@ -343,3 +343,30 @@
   - Same-Origin Policy 실제 학습은 planning PR과 분리된 새 learning PR에서 `notes.md`를 채우며 진행한다.
 - 검증:
   - 운영 규칙 문서 diff와 PR boundary 문구 검색을 확인한다.
+
+## 2026-06-07 - Same-Origin Policy Session A
+
+- 목표: SOP/CORS를 “요청 차단”이 아니라 브라우저의 cross-origin 응답/객체 읽기 제한으로 이해한다.
+- 작성한 코드/문서:
+  - `learning/fundamentals/networking/01-same-origin-policy/notes.md`
+  - `mento/backlog.md`
+- 리뷰받은 코드:
+  - 코드 구현 변경은 없음. `practice/sop_lab.py`를 실행해 브라우저 관찰 도구로 사용했다.
+- 주요 피드백:
+  - origin은 `scheme + host + port`의 엄격한 튜플 비교다. port, scheme, subdomain이 다르면 cross-origin이다.
+  - SOP는 cross-origin 요청/로드를 모두 막는 정책이 아니라 현재 origin의 JavaScript가 다른 origin 응답/객체를 읽는 것을 제한하는 브라우저 보안 정책이다.
+  - CORS는 Cross-Origin Resource Sharing이며, 받는 서버/API 서버가 응답 헤더로 특정 origin에 응답 읽기를 허용하는 정책이다.
+  - form submit은 나갈 수 있으므로 SOP만으로 CSRF를 막을 수 없다. XSS는 공격자 코드가 피해 origin 내부에서 실행되는 별도 문제다.
+- 공개 안전 / 검열:
+  - 예시는 `example.*`, `localhost`만 사용했고 개인/회사/계정/credential/private URL 맥락을 추가하지 않았다.
+- Drift:
+  - 상태: accept
+  - 내용: 학습 중 renderer process 배치가 SOP origin 판정과 1:1 대응하지 않는다는 nuance를 학습 플랜에 정정했다. 실제 학습 이해를 바로잡는 문서 수정이므로 learning PR에 포함한다.
+- 평가:
+  - 상태: pass
+  - 근거: 위협 모델, origin 판정, SOP/CORS 경계, 로컬 관찰 결과, 다음 수정(Session B)이 남았다.
+- 다음 수정:
+  - Session B에서 renderer process, SiteInstance, Site Isolation을 SOP와 다른 계층으로 분리해 학습한다.
+- 검증:
+  - `practice/sop_lab.py` 로컬 실행으로 same-origin / no-cors / with-cors 결과를 관찰했다.
+  - Session closeout에서 Python 문법 검사와 `git diff --check`를 수행한다.
