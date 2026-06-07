@@ -2,6 +2,7 @@
 
 ## Ready
 
+- Same-Origin Policy 실습: `practice/sop_lab.py` 실행 후 same-origin / cross-origin without CORS / cross-origin with CORS 결과를 `notes.md`에 기록한다.
 - `learning/python/oop/01-http-scraper/practice/oop_scraper.py`에 `Quote` 값 객체와 `short()` 메서드를 직접 구현한다.
 - `Fetcher`, `Parser` Protocol을 추가하고 각 역할의 책임을 주석으로 설명한다.
 - `RequestsFetcher`, `QuotesParser`, `QuoteScraper`를 최소 동작 버전으로 연결한다.
