@@ -1,5 +1,9 @@
 # Same-Origin Policy Notes
 
+## 위협 모델
+
+SOP가 없다면 evil.example은 ________ 할 수 있고, 그래서 ________ 가 위험해진다.
+
 ## 관찰 기록
 
 - 실행 날짜:
@@ -27,6 +31,14 @@
 
 ### CORS를 켜면 달라지는 것
 
+
+## 개념 경계 리뷰
+
+- SOP는 서버 인증/인가를 대체하지 않는다:
+- CORS는 SOP를 제거하는 기능이 아니라:
+- CSRF와 SOP의 차이:
+- XSS와 SOP의 차이:
+- SameSite Cookie와 SOP의 차이:
 
 ## 다음 수정
 

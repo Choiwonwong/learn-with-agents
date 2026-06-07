@@ -12,12 +12,14 @@
 
 ## 산출물
 
+- `learning-plan.md`: theory-first 보조 경로에 맞춘 단계별 학습 계획.
 - `practice/sop_lab.py`: 서로 다른 포트의 로컬 서버 두 개를 띄우고, 브라우저에서 cross-origin 요청을 실험한다.
 - `notes.md`: 관찰 결과와 개념 정리.
 - `reference/`: 실습 후 비교할 수 있는 기준 구현 공간.
 
 ## 권장 순서
 
+0. `learning-plan.md`로 위협 모델과 개념 경계를 먼저 잡는다.
 1. `guide.md`의 개념 질문에 답한다.
 2. `practice/sop_lab.py`를 실행해 같은 origin / 다른 origin 요청 차이를 관찰한다.
 3. CORS 헤더를 켜고 끄며 브라우저 콘솔과 Network 탭을 비교한다.
