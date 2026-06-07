@@ -307,3 +307,21 @@
   - `practice/sop_lab.py`를 실행해 same-origin, cross-origin without CORS, cross-origin with CORS 결과를 `notes.md`에 기록한다.
 - 검증:
   - `practice/sop_lab.py` 문법 검사를 통과했다.
+
+## 2026-06-07 - SOP Final Study Plan with Renderer Process Layer
+
+- 목표: Same-Origin Policy 학습 계획을 SOP/CORS 논리 경계에서 renderer process와 Site Isolation 구현 관점까지 확장한다.
+- 작성한 코드/문서:
+  - `learning/fundamentals/networking/01-same-origin-policy/learning-plan.md`
+  - `learning/fundamentals/networking/01-same-origin-policy/README.md`
+  - `learning/fundamentals/networking/01-same-origin-policy/notes.md`
+- 리뷰받은 코드:
+  - 코드 구현은 변경하지 않았다. `practice/sop_lab.py`는 관찰 도구로 유지했다.
+- 주요 피드백:
+  - SOP는 웹 플랫폼 접근 규칙이고, Site Isolation은 renderer compromise를 고려한 브라우저 내부 격리 전략으로 분리해 학습한다.
+  - origin 기준 접근 제어와 site 기준 process isolation을 같은 개념으로 합치지 않는다.
+  - Chrome Task Manager, `chrome://process-internals`, iframe 실험은 정답 판정이 아니라 레이어 구분 관찰 도구로 둔다.
+- 다음 수정:
+  - 실제 학습 세션에서 `notes.md`의 위협 모델, CORS 관찰 결과, renderer process / Site Isolation 설명을 채운다.
+- 검증:
+  - `practice/sop_lab.py` 문법 검사와 `git diff --check`를 통과했다.

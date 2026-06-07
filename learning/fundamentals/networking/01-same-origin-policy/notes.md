@@ -32,6 +32,15 @@ SOP가 없다면 evil.example은 ________ 할 수 있고, 그래서 ________ 가
 ### CORS를 켜면 달라지는 것
 
 
+## Renderer Process / Site Isolation
+
+SOP는 ________ 계층의 규칙이고, Site Isolation은 ________ 계층의 방어 전략이다.
+
+- renderer process가 하는 일:
+- renderer compromise를 가정하면 SOP만으로 부족한 이유:
+- origin 기준과 site 기준의 차이:
+- 관찰한 process 분리 결과:
+
 ## 개념 경계 리뷰
 
 - SOP는 서버 인증/인가를 대체하지 않는다:
@@ -39,6 +48,7 @@ SOP가 없다면 evil.example은 ________ 할 수 있고, 그래서 ________ 가
 - CSRF와 SOP의 차이:
 - XSS와 SOP의 차이:
 - SameSite Cookie와 SOP의 차이:
+- Site Isolation과 SOP의 차이:
 
 ## 다음 수정
 
