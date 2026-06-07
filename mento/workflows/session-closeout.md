@@ -127,6 +127,8 @@ Canonical gate:
 
 학습 마무리 시 commit + push는 기본 수행입니다. 단, 검증 실패, 공개 안전 문제, remote/branch 불명확, destructive risk 같은 blocker가 있으면 보류하고 blocker를 기록합니다.
 
+학습 플래닝과 실제 학습은 PR을 분리합니다. 계획, 커리큘럼, workflow, module scaffold, `learning-plan.md`는 planning PR에 담고, 실제 학습 중 채운 notes, practice code, 리뷰 피드백, 다음 수정은 별도 learning PR에 담습니다. 실제 학습 과정에서 학습 문서를 수정하는 것은 세션 증거와 다음 수정 기록을 남기기 위한 경우 허용합니다.
+
 Canonical gate:
 
 - `mento/workflows/closeout/git-publish.md`

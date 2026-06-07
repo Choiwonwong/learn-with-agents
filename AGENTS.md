@@ -44,6 +44,15 @@ Every meaningful learning session should leave evidence of:
 - code reviewed
 - next concrete modification
 
+## Study PR Boundary Rule
+
+Planning and execution must be published separately:
+
+- Study planning, curriculum design, workflow changes, module scaffolding, and learning-plan documents belong in a planning PR.
+- Actual learning sessions, filled notes, practice-code attempts, review feedback, and follow-up modifications belong in a separate learning PR.
+- During an actual learning session, updating learning documents is allowed when the edits record the session evidence, clarify the current understanding, or define the next concrete modification.
+- Do not mix planning-only changes with actual learning evidence in one PR unless the user explicitly asks for a single combined PR.
+
 ## Project Structure Rules
 
 - Put learning tracks under `learning/<track>/`, such as `python`, `java`, `go`, `design-patterns`, or `fundamentals`.
