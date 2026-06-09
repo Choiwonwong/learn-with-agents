@@ -2,6 +2,32 @@
 
 의미 있는 학습 세션마다 최신 항목을 위에 추가합니다.
 
+## 2026-06-09 - SOP Session B Site Isolation Closeout
+
+- 목표: Same-Origin Policy Session B에서 renderer process, Site Isolation, SiteInstance/process model을 SOP와 같은 계층으로 혼동하지 않도록 정리한다.
+- 작성한 코드/문서:
+  - `learning/fundamentals/networking/01-same-origin-policy/notes.md`
+  - `mento/backlog.md`
+- 리뷰받은 코드:
+  - 코드 변경은 없음. Session A의 SOP/CORS 설명과 Session B의 Site Isolation 설명을 개념 경계 기준으로 리뷰했다.
+- 주요 피드백:
+  - SOP는 정상적인 JavaScript/Web API 접근에서 cross-origin 응답, DOM, storage를 읽을 수 있는지 정하는 웹 플랫폼 접근 제어다.
+  - Site Isolation은 renderer compromise를 가정하고 cross-site 민감 데이터가 공격자 renderer process에 섞이지 않도록 하는 브라우저 내부 프로세스 격리 전략이다.
+  - 같은 URL을 여러 탭에서 열었을 때 탭별 별도 renderer process가 생길 수 있으며, 이는 Site Isolation과 모순되지 않는다. `site = process`가 아니라 process 배치는 SiteInstance, browsing relationship, process reuse, 안정성, 성능, process limit의 영향을 받는다.
+- 공개 안전 / 검열:
+  - 기록은 공개 가능한 브라우저 보안 학습 내용과 로컬 관찰만 포함한다. 개인, 회사, 계정, credential, private URL 맥락은 추가하지 않았다.
+- Drift:
+  - 상태: accept
+  - 내용: 코드 작성 대신 이론 중심 Session B closeout으로 진행했다. 해당 모듈은 theory-first 보조 경로이고 `notes.md`의 빈 섹션을 닫는 것이 목표였으므로 수용한다.
+- 평가:
+  - 상태: pass
+  - 근거: `notes.md`의 Renderer Process / Site Isolation 섹션을 완성했고, backlog의 완료 항목을 제거했으며, 다음 실험 범위를 preflight와 SameSite로 분리했다.
+- 다음 수정:
+  - `practice/sop_lab.py`에서 preflight가 필요한 CORS 요청을 추가하고 브라우저 Network 탭에서 `OPTIONS` 요청을 관찰한다.
+- 검증:
+  - `rg`로 Session B 빈칸 제거, 완료 체크, 다음 수정 정합성을 확인한다.
+  - `git diff --check`, `git diff --stat`, `git status --short`로 문서 변경 범위와 whitespace 상태를 확인한다.
+
 ## 2026-05-04 - Mentor Routing SRP Refactor
 
 - 목표: Codex CLI가 안정적으로 읽는 `AGENTS.md`는 얇은 bootstrap으로 유지하고, 멘토 요청 라우팅과 closeout 위험 gate를 책임별 문서로 분리한다.

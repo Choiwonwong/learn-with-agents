@@ -74,14 +74,14 @@ CORS에서 `Access-Control-Allow-Origin: http://localhost:8000`은 `http://local
 
 ## Renderer Process / Site Isolation
 
-SOP는 ________ 계층의 규칙이고, Site Isolation은 ________ 계층의 방어 전략이다. renderer process 배치는 SOP의 origin 판정과 ________ 대응하지 않는다.
+SOP는 웹 플랫폼 접근 제어 계층의 규칙이고, Site Isolation은 브라우저 내부 프로세스 격리 계층의 방어 전략이다. renderer process 배치는 SOP의 origin 판정과 1:1로 대응하지 않는다.
 
-- renderer process가 하는 일:
-- renderer compromise를 가정하면 SOP만으로 부족한 이유:
-- origin 기준과 site 기준의 차이:
-- SiteInstance / process model이 필요한 이유:
-- 관찰한 process 분리 결과:
-- “same-origin이면 같은 renderer process”라고 일반화하면 안 되는 이유:
+- renderer process가 하는 일: HTML/CSS 처리, JavaScript 실행, DOM 관리, layout/paint 준비처럼 웹 페이지 실행과 렌더링을 담당한다. 웹 페이지의 많은 보안 체크도 정상 renderer 동작을 전제로 한다.
+- renderer compromise를 가정하면 SOP만으로 부족한 이유: SOP는 정상적인 Web API 접근에서 JavaScript가 다른 origin의 응답/객체를 읽지 못하게 하는 규칙이다. 하지만 renderer process 자체가 취약점으로 뚫리면 공격자가 같은 process 안의 메모리나 cross-site 데이터를 비정상적으로 읽으려 할 수 있으므로, 애초에 민감한 cross-site data를 공격자 renderer process에 전달하지 않는 방어선이 필요하다.
+- origin 기준과 site 기준의 차이: origin은 `scheme + host + port`가 모두 같아야 한다. site는 보통 scheme과 registrable domain 중심의 더 넓은 단위다. 예를 들어 `https://app.example.com`과 `https://api.example.com`은 same-site일 수 있지만 same-origin은 아니다. SOP는 origin 기준 접근 제어이고, Site Isolation은 주로 site 기준 프로세스 격리를 다룬다.
+- SiteInstance / process model이 필요한 이유: 실제 브라우저는 단순히 URL 문자열만 보고 process를 배정하지 않는다. 문서와 iframe이 서로 동기적으로 접근할 수 있는지, browsing relationship이 있는지, 같은 site process를 재사용할지, process limit이나 메모리 상태가 어떤지 등을 고려해 SiteInstance와 renderer process 배치를 결정한다.
+- 관찰한 process 분리 결과: 같은 URL을 여러 탭에서 열어도 Chrome Task Manager에서는 탭별로 별도 renderer process가 생길 수 있었다. 이것은 Site Isolation과 모순되지 않는다. Site Isolation은 same-site 문서를 반드시 하나의 process에 모으는 규칙이 아니라, 서로 다른 site의 민감한 데이터를 같은 renderer process에 섞지 않으려는 보안 제약에 가깝다.
+- “same-origin이면 같은 renderer process”라고 일반화하면 안 되는 이유: renderer process 배치는 SOP의 origin 판정을 그대로 process 단위로 옮긴 것이 아니다. 같은 URL도 안정성, 병렬성, SiteInstance 분리, process reuse 정책에 따라 별도 process가 될 수 있고, 반대로 메모리 압박이나 process limit 상황에서는 같은 site의 여러 탭이 process를 공유할 수도 있다. 따라서 `origin/site 하나 = renderer process 하나`가 아니라, `process 배치는 브라우저 내부 정책의 결과이고 Site Isolation은 cross-site 데이터 혼합을 줄이는 보안 제약`으로 이해해야 한다.
 
 ## 개념 경계 리뷰
 
@@ -90,11 +90,11 @@ SOP는 ________ 계층의 규칙이고, Site Isolation은 ________ 계층의 방
 - CSRF와 SOP의 차이: CSRF는 사용자의 인증 상태로 원치 않는 요청이 나가는 문제다. SOP는 응답 읽기를 제한할 수 있지만 form submit 같은 요청 자체를 전부 막지 않으므로 CSRF 방어로 충분하지 않다.
 - XSS와 SOP의 차이: XSS는 공격자 JavaScript가 피해 origin 내부에서 실행되는 문제다. 이 경우 SOP 관점에서는 같은 origin 코드가 되므로 피해 사이트의 API/DOM 접근이 가능해질 수 있다.
 - SameSite Cookie와 SOP의 차이: SOP는 origin 기준 JS 읽기 권한을 다루고, SameSite Cookie는 cross-site 요청에 쿠키를 붙일지 결정하는 쿠키 전송 정책이다.
-- Site Isolation과 SOP의 차이:
+- Site Isolation과 SOP의 차이: SOP는 정상적인 JavaScript/Web API 접근에서 cross-origin 응답, DOM, storage를 읽을 수 있는지 정하는 웹 플랫폼 규칙이다. Site Isolation은 renderer compromise를 가정하고 서로 다른 site의 민감한 데이터를 별도 renderer process에 배치해 피해 범위를 줄이는 브라우저 내부 격리 전략이다.
 
 ## 다음 수정
 
-- [ ] Session B에서 renderer process, SiteInstance, Site Isolation을 SOP와 같은 계층으로 혼동하지 않도록 정리한다.
+- [x] Session B에서 renderer process, SiteInstance, Site Isolation을 SOP와 같은 계층으로 혼동하지 않도록 정리한다.
 - [ ] `practice/sop_lab.py`에서 preflight가 필요한 요청을 추가한다.
 - [ ] 쿠키와 `SameSite` 실험을 별도 단계로 분리한다.
 
@@ -103,4 +103,11 @@ SOP는 ________ 계층의 규칙이고, Site Isolation은 ________ 계층의 방
 - 완료한 범위: 위협 모델, origin 판정, SOP가 막는 것/막지 않는 것, CORS 기본, 로컬 fetch 관찰 실험.
 - 핵심 이해: SOP는 서버나 HTTP 자체의 규칙이 아니라 브라우저가 현재 origin의 JavaScript에 cross-origin 응답/객체를 노출할지 결정하는 보안 정책이다.
 - 검증 증거: 로컬 서버 `localhost:8000`/`localhost:8001` 실험에서 same-origin fetch 성공, CORS 없는 cross-origin fetch 실패, CORS 허용 cross-origin fetch 성공을 관찰했다. 서버 로그상 no-cors 요청도 200 응답이 발생해 “요청 자체”와 “JS 응답 읽기”가 다르다는 점을 확인했다.
-- 남은 범위: renderer process / Site Isolation은 Session B에서 진행한다.
+- 후속 처리: renderer process / Site Isolation은 Session B에서 정리했다.
+
+## Session B Closeout
+
+- 완료한 범위: renderer process의 역할, renderer compromise를 가정한 Site Isolation의 필요성, origin과 site 기준 차이, SiteInstance/process model의 역할, 같은 URL이라도 탭별 process가 분리될 수 있다는 관찰을 정리했다.
+- 핵심 이해: SOP는 JavaScript의 cross-origin 읽기 권한을 제한하는 웹 플랫폼 접근 제어이고, Site Isolation은 renderer가 뚫렸을 때 cross-site 데이터 노출 피해를 줄이기 위한 브라우저 내부 프로세스 격리 전략이다.
+- 검증 증거: `notes.md`의 Renderer Process / Site Isolation 섹션을 빈칸 없이 채웠고, 같은 URL 탭별 별도 renderer process 관찰을 `site = process`가 아니라 process model 정책의 결과로 정리했다.
+- 남은 범위: preflight가 필요한 CORS 요청 실험과 쿠키 `SameSite` 실험은 다음 세션으로 분리한다.

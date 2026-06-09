@@ -2,7 +2,7 @@
 
 ## Ready
 
-- Same-Origin Policy Session B: renderer process, SiteInstance, Site Isolation을 SOP와 같은 계층으로 혼동하지 않도록 `notes.md`의 Renderer Process / Site Isolation 섹션을 채운다.
+- Same-Origin Policy Session C: `practice/sop_lab.py`에서 preflight가 필요한 CORS 요청을 추가하고 브라우저 Network 탭에서 `OPTIONS` 요청을 관찰한다.
 - `learning/python/oop/01-http-scraper/practice/oop_scraper.py`에 `Quote` 값 객체와 `short()` 메서드를 직접 구현한다.
 - `Fetcher`, `Parser` Protocol을 추가하고 각 역할의 책임을 주석으로 설명한다.
 - `RequestsFetcher`, `QuotesParser`, `QuoteScraper`를 최소 동작 버전으로 연결한다.
